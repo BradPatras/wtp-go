@@ -1,5 +1,6 @@
-{
-    "1": {
+[
+    {
+        "id": 1,
         "name": "Bulbasaur",
         "description": [
             "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.",
@@ -15,7 +16,8 @@
             "While it is young, it uses the nutrients that are stored in the seeds on its back in order to grow."
         ]
     },
-    "2": {
+    {
+        "id": 2,
         "name": "Ivysaur",
         "description": [
             "When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs.",
@@ -32,7 +34,8 @@
             "To support its bulb, *****'s legs grow sturdy. If it spends more time lying in the sunlight, the bud will soon bloom into a large flower."
         ]
     },
-    "3": {
+    {
+        "id": 3,
         "name": "Venusaur",
         "description": [
             "*****'s flower is said to take on vivid colors if it gets plenty of nutrition and sunlight. The flower's aroma soothes the emotions of people.",
@@ -50,7 +53,8 @@
             "There is a large flower on *****'s back. The flower is said to take on vivid colors if it gets plenty of nutrition and sunlight. The flower's aroma soothes the emotions of people."
         ]
     },
-    "4": {
+    {
+        "id": 4,
         "name": "Charmander",
         "description": [
             "The flame at the tip of its tail makes a sound as it burns. You can only hear it in quiet places.",
@@ -67,7 +71,8 @@
             "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail."
         ]
     },
-    "5": {
+    {
+        "id": 5,
         "name": "Charmeleon",
         "description": [
             "It has a barbaric nature. In battle, it whips its fiery tail around and slashes away with sharp claws.",
@@ -85,7 +90,8 @@
             "When it swings its burning tail, it elevates the air temperature to unbearably high levels."
         ]
     },
-    "6": {
+    {
+        "id": 6,
         "name": "Charizard",
         "description": [
             "It uses its wings to fly high. The temperature of its fire increases as it gains exper­ ience in battle.",
@@ -105,7 +111,8 @@
             "***** flies around the sky in search of powerful opponents. It breathes fire of such great heat that it melts anything. However, it never turns its fiery breath on any opponent weaker than itself."
         ]
     },
-    "7": {
+    {
+        "id": 7,
         "name": "Squirtle",
         "description": [
             "When it retracts its long neck into its shell, it squirts out water with vigorous force.",
@@ -124,7 +131,8 @@
             "The shell is soft when it is born. It soon becomes so resilient, prod­ ding fingers will bounce off it."
         ]
     },
-    "8": {
+    {
+        "id": 8,
         "name": "Wartortle",
         "description": [
             "It is a well-established symbol of longevity. If its shell has algae on it, that ***** is very old.",
@@ -144,7 +152,8 @@
             "Its tail is large and covered with a rich, thick fur. The tail becomes increasingly deeper in color as ***** ages. The scratches on its shell are evidence of this POKéMON's toughness as a battler."
         ]
     },
-    "9": {
+    {
+        "id": 9,
         "name": "Blastoise",
         "description": [
             "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
@@ -162,7 +171,8 @@
             "***** has water spouts that protrude from its shell. The water spouts are very accurate. They can shoot bullets of water with enough accuracy to strike empty cans from a distance of over 160 feet."
         ]
     },
-    "10": {
+    {
+        "id": 10,
         "name": "Caterpie",
         "description": [
             "For protection, it releases a horrible stench from the antennae on its head to drive away enemies.",
@@ -183,7 +193,8 @@
             "Its voracious appetite compels it to devour leaves bigger than itself without hesitation. It releases a terribly strong odor from its antennae."
         ]
     },
-    "11": {
+    {
+        "id": 11,
         "name": "Metapod",
         "description": [
             "The shell covering this POKéMON's body is as hard as an iron slab. ***** does not move very much. It stays still because it is preparing its soft innards for evolution inside the hard shell.",
@@ -206,7 +217,8 @@
             "It prepares for evolution by har­ dening its shell as much as possi­ ble to protect its soft body."
         ]
     },
-    "12": {
+    {
+        "id": 12,
         "name": "Butterfree",
         "description": [
             "Close examination of its large eyes reveals that each eye is composed of a myriad of tiny eyes.",
@@ -228,7 +240,8 @@
             "It flits from flower to flower, collecting honey. It can even identify distant flowers in bloom."
         ]
     },
-    "13": {
+    {
+        "id": 13,
         "name": "Weedle",
         "description": [
             "The barb on top of its head secretes a strong poison. It uses this toxic barb to protect itself.",
@@ -243,7 +256,8 @@
             "Its poison stinger is very powerful. Its bright-colored body is intended to warn off its enemies."
         ]
     },
-    "14": {
+    {
+        "id": 14,
         "name": "Kakuna",
         "description": [
             "Able to move only slightly. When endangered, it may stick out its stinger and poison its enemy.",
@@ -260,7 +274,8 @@
             "Almost incapable of moving, this POKéMON can only harden its shell to protect itself from predators."
         ]
     },
-    "15": {
+    {
+        "id": 15,
         "name": "Beedrill",
         "description": [
             "A ***** is extremely territorial. For safety reasons, no one should  ever approach its nest. If angered, they will attack in a swarm.",
@@ -278,7 +293,8 @@
             "Flies at high speed and attacks using its large venomous stingers on its forelegs and tail."
         ]
     },
-    "16": {
+    {
+        "id": 16,
         "name": "Pidgey",
         "description": [
             "A common sight in forests and woods. It flaps its wings at ground level to kick up blinding sand.",
@@ -294,7 +310,8 @@
             "It usually hides in tall grass. Be­ cause it dislikes fighting, it pro­ tects itself by kicking up sand."
         ]
     },
-    "17": {
+    {
+        "id": 17,
         "name": "Pidgeotto",
         "description": [
             "It immobilizes its prey using well- developed claws, then carries the prey more than 60 miles to its nest.",
@@ -314,7 +331,8 @@
             "The claws on its feet are well developed. It can carry prey such as an EXEGGCUTE to its nest over 60 miles away."
         ]
     },
-    "18": {
+    {
+        "id": 18,
         "name": "Pidgeot",
         "description": [
             "It spreads its beautiful wings wide to frighten its enemies. It can fly at Mach 2 speed.",
@@ -331,7 +349,8 @@
             "This POKéMON has a dazzling plumage of beautifully glossy feathers. Many TRAINERS are captivated by the striking beauty of the feathers on its head, compelling them to choose ***** as their POKéMON."
         ]
     },
-    "19": {
+    {
+        "id": 19,
         "name": "Rattata",
         "description": [
             "***** is cautious in the extreme. Even while it is asleep, it constantly listens by moving its ears around. It is not picky about where it lives - it will make its nest anywhere.",
@@ -353,7 +372,8 @@
             "This Pokémon is common but hazardous. Its sharp incisors can easily cut right through hard wood."
         ]
     },
-    "20": {
+    {
+        "id": 20,
         "name": "Raticate",
         "description": [
             "A *****'s sturdy fangs grow steadily. To keep them ground down, it gnaws on rocks and logs. It may even chew on the walls of houses.",
@@ -376,7 +396,8 @@
             "*****'s sturdy fangs grow steadily. To keep them ground down, it gnaws on rocks and logs. It may even chew on the walls of houses."
         ]
     },
-    "21": {
+    {
+        "id": 21,
         "name": "Spearow",
         "description": [
             "Its short wings make it inept at flying. It moves about hurriedly and pecks at Bug-type Pokémon in the tall grass.",
@@ -395,7 +416,8 @@
             "Inept at flying high. However, it can fly around very fast to protect its territory."
         ]
     },
-    "22": {
+    {
+        "id": 22,
         "name": "Fearow",
         "description": [
             "A Pokémon that dates back many years. If it senses danger, it flies high and away, instantly.",
@@ -415,7 +437,8 @@
             "It's tough and has excellent stamina. It has no problem flying continuously for a whole day carrying a heavy load."
         ]
     },
-    "23": {
+    {
+        "id": 23,
         "name": "Ekans",
         "description": [
             "The eggs of bird Pokémon are its favorite food. It swallows eggs whole, so sometimes an egg gets stuck, and ***** faints.",
@@ -434,7 +457,8 @@
             "Moves silently and stealthily. Eats the eggs of birds, such as PIDGEY and SPEAROW, whole."
         ]
     },
-    "24": {
+    {
+        "id": 24,
         "name": "Arbok",
         "description": [
             "The pattern on its belly appears to be a frightening face. Weak foes will flee just at the sight of the pattern.",
@@ -452,7 +476,8 @@
             "To intimidate foes, it spreads its chest wide and makes eerie sounds by expelling air from its mouth."
         ]
     },
-    "25": {
+    {
+        "id": 25,
         "name": "Pikachu",
         "description": [
             "When ***** meet, they'll touch their tails together and exchange electricity through them as a form of greeting.",
@@ -482,7 +507,8 @@
             "It occasionally uses an electric shock to recharge a fellow ***** that is in a weakened state."
         ]
     },
-    "26": {
+    {
+        "id": 26,
         "name": "Raichu",
         "description": [
             "Its long tail serves as a ground to protect itself from its own high-voltage power.",
@@ -509,7 +535,8 @@
             "If its electric pouches run empty, it raises its tail to gather electricity from the atmosphere."
         ]
     },
-    "27": {
+    {
+        "id": 27,
         "name": "Sandshrew",
         "description": [
             "Its body is dry. When it gets cold at night, its hide is said to become coated with a fine dew.",
@@ -535,7 +562,8 @@
             "***** has a very dry hide that is extremely tough. The Pokémon can roll into a ball that repels any attack. At night, it burrows into the desert sand to sleep."
         ]
     },
-    "28": {
+    {
+        "id": 28,
         "name": "Sandslash",
         "description": [
             "It is skilled at slashing enemies with its claws. If broken, they start to grow back in a day.",
@@ -558,7 +586,8 @@
             "It is adept at attacking with the spines on its back and its sharp claws while quickly scurrying about."
         ]
     },
-    "29": {
+    {
+        "id": 29,
         "name": "Nidoran♀",
         "description": [
             "A mild-mannered POKéMON that does not like to fight. Beware, its small horns secrete venom.",
@@ -580,7 +609,8 @@
             "Its highly toxic barbs are thought to have developed as protection for this small- bodied POKéMON. When enraged, it releases a horrible toxin from its horn."
         ]
     },
-    "30": {
+    {
+        "id": 30,
         "name": "Nidorina",
         "description": [
             "It has a docile nature. If it is threatened with attack, it raises the barbs that are all over its body.",
@@ -601,7 +631,8 @@
             "It has a calm and caring nature. Because its horn grows slowly, it prefers not to fight."
         ]
     },
-    "31": {
+    {
+        "id": 31,
         "name": "Nidoqueen",
         "description": [
             "Its body is covered with needle-like scales. It never shows signs of shrinking from any attack.",
@@ -621,7 +652,8 @@
             "*****'s body is encased in extremely hard scales. It is adept at sending foes flying with harsh tackles. This POKéMON is at its strongest when it is defending its young."
         ]
     },
-    "32": {
+    {
+        "id": 32,
         "name": "Nidoran♂",
         "description": [
             "It constantly moves its large ears in many directions in order to detect danger right away.",
@@ -639,7 +671,8 @@
             "It stiffens its ears to sense danger. The larger its horns, the more  powerful its secreted venom."
         ]
     },
-    "33": {
+    {
+        "id": 33,
         "name": "Nidorino",
         "description": [
             "It is easily angered. By swinging its well- developed horn wildly, it can even punch through diamond.",
@@ -658,7 +691,8 @@
             "Quick to anger, it stabs enemies with its horn to inject a powerful poison when it becomes agitated."
         ]
     },
-    "34": {
+    {
+        "id": 34,
         "name": "Nidoking",
         "description": [
             "It swings its big tail around during battle. If its foe flinches, it will charge with its sturdy body.",
@@ -678,7 +712,8 @@
             "*****'s thick tail packs enormously destructive power. With one swing, it can topple a metal transmission tower. Once this Pokémon goes on a rampage, there is no stopping it."
         ]
     },
-    "35": {
+    {
+        "id": 35,
         "name": "Clefairy",
         "description": [
             "On every night of a full moon, they come out to play. When dawn arrives, the tired ***** go to sleep nestled up against each other in deep and quiet mountains.",
@@ -703,7 +738,8 @@
             "It can be found in quiet mountain areas on a full moon's night. Its dancing and its tiny, faintly glowing wings confer upon it a lovely fairylike quality."
         ]
     },
-    "36": {
+    {
+        "id": 36,
         "name": "Clefable",
         "description": [
             "Its very sensitive ears let it distinguish distant sounds. As a result, it prefers quiet places.",
@@ -728,7 +764,8 @@
             "A timid fairy Pokémon that is rarely seen, it will run and hide the moment it senses people."
         ]
     },
-    "37": {
+    {
+        "id": 37,
         "name": "Vulpix",
         "description": [
             "Its beautiful tails have made it very popular. However, if it's not brushed diligently, it will be a mass of tangles before you know it.",
@@ -754,7 +791,8 @@
             "Inside *****'s body burns a flame that never goes out. During the daytime, when the temperatures rise, this Pokémon releases flames from its mouth to prevent its body from growing too hot."
         ]
     },
-    "38": {
+    {
+        "id": 38,
         "name": "Ninetales",
         "description": [
             "***** casts a sinister light from its bright red eyes to gain total control over its foe's mind. This POKéMON is said to live for a thousand years.",
@@ -781,7 +819,8 @@
             "The coat of gleaming golden fur is quite magnificent. This species is said to store sacred power in its nine long tails and to live for a millennium."
         ]
     },
-    "39": {
+    {
+        "id": 39,
         "name": "Jigglypuff",
         "description": [
             "When this Pokémon sings, it never pauses to breathe. If it is in a battle against an opponent that does not easily fall asleep, ***** cannot breathe, endangering its life.",
@@ -808,7 +847,8 @@
             "Looking into its cute, round eyes causes it to sing a relaxing melody, inducing its enemies to sleep."
         ]
     },
-    "40": {
+    {
+        "id": 40,
         "name": "Wigglytuff",
         "description": [
             "It has a very fine fur. Take care not to make it angry, or it may inflate steadily and hit with a BODY SLAM.",
@@ -835,7 +875,8 @@
             "Its fine fur feels so pleasant, those who accidentally touch it cannot take their hands away."
         ]
     },
-    "41": {
+    {
+        "id": 41,
         "name": "Zubat",
         "description": [
             "Capable of flying safely in dark places, it emits ultrasonic cries to check for any obstacles.",
@@ -864,7 +905,8 @@
             "Emits ultrasonic cries while it flies. They act as a sonar used to check for objects in its way."
         ]
     },
-    "42": {
+    {
+        "id": 42,
         "name": "Golbat",
         "description": [
             "***** loves to drink the blood of living things. It is particularly active in the pitch black of night. This POKéMON flits around in the night skies, seeking fresh blood.",
@@ -894,7 +936,8 @@
             "Once it starts sucking blood, it does not stop until it is full. It flies at night in search of prey."
         ]
     },
-    "43": {
+    {
+        "id": 43,
         "name": "Oddish",
         "description": [
             "***** searches for fertile, nutrient- rich soil, then plants itself. During the daytime, while it is planted, this POKéMON's feet are thought to change shape and become similar to the roots of trees.",
@@ -913,7 +956,8 @@
             "***** searches for fertile, nutrient-rich soil, then plants itself. During the daytime, while it is planted, this Pokémon's feet are thought to change shape and become similar to the roots of trees."
         ]
     },
-    "44": {
+    {
+        "id": 44,
         "name": "Gloom",
         "description": [
             "The fluid that oozes from its mouth isn't drool. It is a nectar that is used to attract prey.",
@@ -932,7 +976,8 @@
             "A horribly noxious honey drools from its mouth. One whiff of the honey can result in memory loss. Some fans are said to enjoy this overwhelming stink, however."
         ]
     },
-    "45": {
+    {
+        "id": 45,
         "name": "Vileplume",
         "description": [
             "It has the world's largest petals. With every step, the petals shake out heavy clouds of toxic pollen.",
@@ -950,7 +995,8 @@
             "The bud bursts into bloom with a bang. It then starts scattering allergenic, poisonous pollen."
         ]
     },
-    "46": {
+    {
+        "id": 46,
         "name": "Paras",
         "description": [
             "Burrows to suck tree roots. The mushrooms on its back grow by drawing nutrients from the bug host.",
@@ -973,7 +1019,8 @@
             "Sometimes seen at the foot of trees in humid forests. The mushrooms on its back—called tochukaso—are not present on infant specimens and instead emerge as ***** matures."
         ]
     },
-    "47": {
+    {
+        "id": 47,
         "name": "Parasect",
         "description": [
             "When nothing's left to extract from the bug, the mushrooms on its back leave spores on the bug's egg.",
@@ -997,7 +1044,8 @@
             "The bug is mostly dead, with the mushroom on its back having become the main body. If the mushroom comes off, the bug stops moving."
         ]
     },
-    "48": {
+    {
+        "id": 48,
         "name": "Venonat",
         "description": [
             "Its eyes also function as radar units. It catches and eats small bugs that hide in darkness.",
@@ -1015,7 +1063,8 @@
             "Poison oozes from all over its body. It catches and eats small bugs at night that are attracted by light."
         ]
     },
-    "49": {
+    {
+        "id": 49,
         "name": "Venomoth",
         "description": [
             "The wings are covered with dustlike scales. Every time it flaps its wings, it looses highly toxic dust.",
@@ -1034,7 +1083,8 @@
             "It flutters its wings to scatter dustlike scales. The scales leach toxins if they contact skin."
         ]
     },
-    "50": {
+    {
+        "id": 50,
         "name": "Diglett",
         "description": [
             "If a ***** digs through a field, it leaves the soil perfectly tilled and ideal for planting crops.",
@@ -1055,7 +1105,8 @@
             "It burrows through the ground at a shallow depth. It leaves raised earth in its wake, making it easy to spot."
         ]
     },
-    "51": {
+    {
+        "id": 51,
         "name": "Dugtrio",
         "description": [
             "Because the triplets originally split from one body, they think exactly alike. They work cooperatively to burrow endlessly through the ground.",
@@ -1077,7 +1128,8 @@
             "Its three heads bob separately up and down to loosen the soil nearby, making it easier for it to burrow."
         ]
     },
-    "52": {
+    {
+        "id": 52,
         "name": "Meowth",
         "description": [
             "It lies around all day, becoming active near dusk. At night, it wanders the city in search of loose change.",
@@ -1102,7 +1154,8 @@
             "It loves anything that shines. It especially adores coins that it picks up and se­ cretly hoards."
         ]
     },
-    "53": {
+    {
+        "id": 53,
         "name": "Persian",
         "description": [
             "A *****'s six bold whiskers sense air movements to determine what is in its vicinity. It becomes docile if grabbed by the whiskers.",
@@ -1123,7 +1176,8 @@
             "Its lithe muscles allow it to walk without making a sound. It attacks in an instant."
         ]
     },
-    "54": {
+    {
+        "id": 54,
         "name": "Psyduck",
         "description": [
             "It is constantly wracked by a headache. When the headache turns intense, it begins using mysterious powers.",
@@ -1151,7 +1205,8 @@
             "***** uses a mysterious power. When it does so, this Pokémon generates brain waves that are supposedly only seen in sleepers. This discovery spurred controversy among scholars."
         ]
     },
-    "55": {
+    {
+        "id": 55,
         "name": "Golduck",
         "description": [
             "***** is the fastest swimmer among all Pokémon. It swims effortlessly, even in a rough, stormy sea. It sometimes rescues people from wrecked ships floundering in high seas.",
@@ -1182,7 +1237,8 @@
             "Its body is strong, and it has webbing on its hands and feet. ***** can swim easily through rough seas, clawing its way through the high waves."
         ]
     },
-    "56": {
+    {
+        "id": 56,
         "name": "Mankey",
         "description": [
             "An agile Pokémon that lives in trees. It angers easily and will not hesitate to attack anything.",
@@ -1203,7 +1259,8 @@
             "Light and agile on its feet, and ferocious in temperament. When angered, it flies into an uncontrollable frenzy."
         ]
     },
-    "57": {
+    {
+        "id": 57,
         "name": "Primeape",
         "description": [
             "Some researchers theorize that ***** remains angry even when inside a Poké Ball.",
@@ -1222,7 +1279,8 @@
             "It stops being angry only when nobody else is around. To view this moment is very difficult."
         ]
     },
-    "58": {
+    {
+        "id": 58,
         "name": "Growlithe",
         "description": [
             "Very friendly and faithful to people. It will try to repel enemies by barking and biting.",
@@ -1247,7 +1305,8 @@
             "It is very protective of its territory. It will bark and bite to repel intruders from its space."
         ]
     },
-    "59": {
+    {
+        "id": 59,
         "name": "Arcanine",
         "description": [
             "***** is known for its high speed. It is said to be capable of running over 6,200 miles in a single day and night. The fire that blazes wildly within this Pokémon's body is its source of power.",
@@ -1273,7 +1332,8 @@
             "***** is known for its high speed. It is said to be capable of running over 6,200 miles in a single day and night. The fire that blazes wildly within this POKéMON's body is its source of power."
         ]
     },
-    "60": {
+    {
+        "id": 60,
         "name": "Poliwag",
         "description": [
             "***** has a very thin skin. It is possible to see the POKéMON's spiral innards right through the skin. Despite its thinness, however, the skin is also very flexible. Even sharp fangs bounce right off it.",
@@ -1296,7 +1356,8 @@
             "For *****, swimming is easier than walking. The swirl pattern on its belly is actually part of the Pokémon's innards showing through the skin."
         ]
     },
-    "61": {
+    {
+        "id": 61,
         "name": "Poliwhirl",
         "description": [
             "The skin on most of its body is moist. However, the skin on its belly spiral feels smooth.",
@@ -1320,7 +1381,8 @@
             "Although it can live on land, it prefers to stay in the water, where it has fewer natural enemies."
         ]
     },
-    "62": {
+    {
+        "id": 62,
         "name": "Poliwrath",
         "description": [
             "A swimmer adept at both the front crawl and breaststroke. Easily overtakes the best human swimmers.",
@@ -1344,7 +1406,8 @@
             "*****'s highly developed, brawny muscles never grow fatigued, however much it exercises. It is so tirelessly strong, this Pokémon can swim back and forth across the ocean without effort."
         ]
     },
-    "63": {
+    {
+        "id": 63,
         "name": "Abra",
         "description": [
             "***** sleeps for eighteen hours a day. However, it can sense the presence of foes even while it is sleeping. In such a situation, this POKéMON immediately teleports to safety.",
@@ -1373,7 +1436,8 @@
             "It hypnotizes itself so that it can teleport away when it senses danger, even if it is asleep."
         ]
     },
-    "64": {
+    {
+        "id": 64,
         "name": "Kadabra",
         "description": [
             "***** holds a silver spoon in its hand. The spoon is used to amplify the alpha waves in its brain. Without the spoon, the Pokémon is said to be limited to half the usual amount of its telekinetic powers.",
@@ -1402,7 +1466,8 @@
             "Many odd things happen if this POKéMON is close by. For example, it makes clocks run backwards."
         ]
     },
-    "65": {
+    {
+        "id": 65,
         "name": "Alakazam",
         "description": [
             "Its superb memory lets it recall everything it has experienced from birth. Its IQ exceeds 5,000.",
@@ -1431,7 +1496,8 @@
             "Closing both its eyes heightens all its other senses. This enables it to use its abilities to their extremes."
         ]
     },
-    "66": {
+    {
+        "id": 66,
         "name": "Machop",
         "description": [
             "Though small in stature, it is powerful enough to easily heft and throw a number of GEODUDE at once.",
@@ -1457,7 +1523,8 @@
             "It hefts a GRAVELER repeatedly to strengthen its entire body. It uses every type of martial arts."
         ]
     },
-    "67": {
+    {
+        "id": 67,
         "name": "Machoke",
         "description": [
             "The muscles covering its body teem with power. Even when still, it exudes an amazing sense of strength.",
@@ -1485,7 +1552,8 @@
             "***** undertakes bodybuilding every day even as it helps people with tough, physically demanding labor. On its days off, this POKéMON heads to the fields and mountains to exercise and train."
         ]
     },
-    "68": {
+    {
+        "id": 68,
         "name": "Machamp",
         "description": [
             "One arm alone can move mountains. Using all four arms, this Pokémon fires off awesome punches.",
@@ -1511,7 +1579,8 @@
             "With four arms, it can attack and defend simultaneously. It's said to have mastered every martial art in the world."
         ]
     },
-    "69": {
+    {
+        "id": 69,
         "name": "Bellsprout",
         "description": [
             "Prefers hot and humid places. It ensnares tiny bugs with its vines and devours them.",
@@ -1529,7 +1598,8 @@
             "A *****'s thin and flexible body lets it bend and sway to avoid any attack, however strong it may be. From its mouth, it leaks a fluid that melts even iron."
         ]
     },
-    "70": {
+    {
+        "id": 70,
         "name": "Weepinbell",
         "description": [
             "At night, a ***** hangs on to a tree branch with its hooked rear and sleeps. If it moves around in its sleep, it may wake up to find itself on the ground.",
@@ -1547,7 +1617,8 @@
             "Even though it is filled with ACID, it does not melt because it also oozes a neutral­ izing fluid."
         ]
     },
-    "71": {
+    {
+        "id": 71,
         "name": "Victreebel",
         "description": [
             "It pools in its mouth a fluid with a honeylike scent, which is really an acid that dissolves anything.",
@@ -1567,7 +1638,8 @@
             "Lures prey into its mouth with a honeylike aroma. The helpless prey is melted with a dissolving fluid."
         ]
     },
-    "72": {
+    {
+        "id": 72,
         "name": "Tentacool",
         "description": [
             "Drifts in shallow seas. Anglers who hook them by accident are often punished by their stingers.",
@@ -1595,7 +1667,8 @@
             "They can be found lying dehydrated on beaches, but they are often still alive. When soaked in water, they will revive."
         ]
     },
-    "73": {
+    {
+        "id": 73,
         "name": "Tentacruel",
         "description": [
             "It fires off ultrasonic waves from its red orbs to weaken its prey, and then it wraps them up in its 80 tentacles.",
@@ -1622,7 +1695,8 @@
             "Its 80 tentacles can stretch and shrink freely. ***** ensnares prey in a net of spread-out tentacles, delivering venomous stings to its catch."
         ]
     },
-    "74": {
+    {
+        "id": 74,
         "name": "Geodude",
         "description": [
             "Most people may not notice, but a closer look should reveal that there are many ***** around.",
@@ -1647,7 +1721,8 @@
             "Proud of their sturdy bodies, they bash against each other in a contest to prove whose is harder."
         ]
     },
-    "75": {
+    {
+        "id": 75,
         "name": "Graveler",
         "description": [
             "It tumbles down slopes, heedless of any body parts chipping off. It eats a ton of rocks daily.",
@@ -1672,7 +1747,8 @@
             "It rolls on mountain paths to move. Once it builds momentum, no Pokémon can stop it without difficulty."
         ]
     },
-    "76": {
+    {
+        "id": 76,
         "name": "Golem",
         "description": [
             "It sheds its skin once a year. The discarded shell immediately hardens and crumbles away.",
@@ -1700,7 +1776,8 @@
             "It tumbles down mountains, leaving grooves from peak to base. Stay clear of these grooves."
         ]
     },
-    "77": {
+    {
+        "id": 77,
         "name": "Ponyta",
         "description": [
             "Training by jumping over grass that grows longer every day has made it a world-class jumper.",
@@ -1723,7 +1800,8 @@
             "Its hooves are 10 times harder than diamonds. It can trample anything completely flat in little time."
         ]
     },
-    "78": {
+    {
+        "id": 78,
         "name": "Rapidash",
         "description": [
             "***** usually can be seen casually cantering in the fields and plains. However, when this Pokémon turns serious, its fiery manes flare and blaze as it gallops its way up to 150 mph.",
@@ -1747,7 +1825,8 @@
             "It just loves to gallop. The faster it goes, the long­ er the swaying flames of its mane will become."
         ]
     },
-    "79": {
+    {
+        "id": 79,
         "name": "Slowpoke",
         "description": [
             "It is always vacantly lost in thought, but no one knows what it is thinking about. It is good at fishing with its tail.",
@@ -1771,7 +1850,8 @@
             "There are some places where ***** is worshiped because of a long-standing belief that whenever ***** yawns, it rains."
         ]
     },
-    "80": {
+    {
+        "id": 80,
         "name": "Slowbro",
         "description": [
             "Shellder, in its greed to suck out more and more sweetness from *****'s tail, has metamorphosed into a spiral-shaped shell.",
@@ -1799,7 +1879,8 @@
             "Lives lazily by the sea. If the SHELLDER on its tail comes off, it becomes a SLOWPOKE again."
         ]
     },
-    "81": {
+    {
+        "id": 81,
         "name": "Magnemite",
         "description": [
             "Uses anti-gravity to stay suspended. Appears without warning and uses THUNDER WAVE and similar moves.",
@@ -1830,7 +1911,8 @@
             "***** floats in the air by emitting electromagnetic waves from the units at its sides. These waves block gravity. This Pokémon becomes incapable of flight if its internal electrical supply is depleted."
         ]
     },
-    "82": {
+    {
+        "id": 82,
         "name": "Magneton",
         "description": [
             "Formed by several MAGNEMITEs linked together. They frequently appear when sunspots flare up.",
@@ -1860,7 +1942,8 @@
             "When rain clouds form, many ***** gather in high places to wait for lightning to strike."
         ]
     },
-    "83": {
+    {
+        "id": 83,
         "name": "Farfetch'd",
         "description": [
             "If anyone tries to disturb where the essential plant sticks grow, it uses its own stick to thwart them.",
@@ -1881,7 +1964,8 @@
             "It is always seen with a stick from a plant. Apparently, there are good sticks and bad sticks. This POKéMON occasionally fights with others over choice sticks."
         ]
     },
-    "84": {
+    {
+        "id": 84,
         "name": "Doduo",
         "description": [
             "It races through grassy plains with powerful strides, leaving footprints up to four inches deep.",
@@ -1900,7 +1984,8 @@
             "Its short wings make flying dif­ ficult. Instead, this POKéMON runs at high speed on developed legs."
         ]
     },
-    "85": {
+    {
+        "id": 85,
         "name": "Dodrio",
         "description": [
             "Watch out if *****'s three heads are looking in three separate directions. It's a sure sign that it is on its guard. Don't go near this Pokémon if it's being wary—it may decide to peck you.",
@@ -1920,7 +2005,8 @@
             "When Doduo evolves into this odd breed, one of its heads splits into two. It runs at nearly 40 mph."
         ]
     },
-    "86": {
+    {
+        "id": 86,
         "name": "Seel",
         "description": [
             "Covered with light blue fur, its hide is thick and tough. It is active in bitter cold of minus 40 degrees Fahrenheit.",
@@ -1941,7 +2027,8 @@
             "***** hunts for prey in the frigid sea underneath sheets of ice. When it needs to breathe, it punches a hole through the ice with the sharply protruding section of its head."
         ]
     },
-    "87": {
+    {
+        "id": 87,
         "name": "Dewgong",
         "description": [
             "Its entire body is a snowy-white. Unharmed by even intense cold, it swims powerfully in icy waters.",
@@ -1961,7 +2048,8 @@
             "Its entire body is a snowy white. Unharmed by even intense cold, it swims powerfully in icy waters."
         ]
     },
-    "88": {
+    {
+        "id": 88,
         "name": "Grimer",
         "description": [
             "It was born from sludge transformed by exposure to X-rays from the moon. When its internal load of germs decreases, it dies.",
@@ -1987,7 +2075,8 @@
             "It was born from sludge on the ocean floor. In a sterile environment, the germs within its body can't multiply, and it dies."
         ]
     },
-    "89": {
+    {
+        "id": 89,
         "name": "Muk",
         "description": [
             "As it moves, a very strong poison leaks from it, making the ground there barren for three years.",
@@ -2012,7 +2101,8 @@
             "Smells so awful, it can cause fainting. Through degeneration of its nose, it lost its sense of smell."
         ]
     },
-    "90": {
+    {
+        "id": 90,
         "name": "Shellder",
         "description": [
             "At night, it burrows a hole in the seafloor with its broad tongue to make a place to sleep. While asleep, it closes its shell, but leaves its tongue hanging out.",
@@ -2032,7 +2122,8 @@
             "This Pokémon's tongue is always hanging out. It uses its tongue with great dexterity to dig up sand from the seabed in its search for food."
         ]
     },
-    "91": {
+    {
+        "id": 91,
         "name": "Cloyster",
         "description": [
             "Its hard shell cannot be shattered—not even by a bomb. The contents of the shell remain unknown.",
@@ -2053,7 +2144,8 @@
             "Once it slams its shell shut, it is impossible to open, even by those with superior strength."
         ]
     },
-    "92": {
+    {
+        "id": 92,
         "name": "Gastly",
         "description": [
             "A Pokémon born from poison gases. It defeats even the largest foes by enveloping them in gas.",
@@ -2077,7 +2169,8 @@
             "Said to appear in decrepit, deserted buildings. It has no real shape as it appears to be made of a gas."
         ]
     },
-    "93": {
+    {
+        "id": 93,
         "name": "Haunter",
         "description": [
             "This frightful, malevolent spirit can glide through walls, appearing wherever it likes. According to rumor, victims of a *****'s lick will wither to death day by day.",
@@ -2102,7 +2195,8 @@
             "In total darkness, where nothing is visible, ***** lurks, silently stalking its next victim."
         ]
     },
-    "94": {
+    {
+        "id": 94,
         "name": "Gengar",
         "description": [
             "Deep in the night, your shadow cast by a streetlight may suddenly overtake you. It is actually a ***** running past you, pretending to be your shadow.",
@@ -2128,7 +2222,8 @@
             "It is said to emerge from darkness to steal the lives of those who become lost in mountains."
         ]
     },
-    "95": {
+    {
+        "id": 95,
         "name": "Onix",
         "description": [
             "It rapidly bores through the ground at 50 mph by squirming and twisting its mas­ sive, rugged body.",
@@ -2151,7 +2246,8 @@
             "It twists and squirms through the ground. The thunderous roar of its tunneling echoes a long way."
         ]
     },
-    "96": {
+    {
+        "id": 96,
         "name": "Drowzee",
         "description": [
             "If your nose becomes itchy while you are sleeping, it's a sure sign that a ***** is standing above your pillow and trying to eat your dream through your nostrils.",
@@ -2174,7 +2270,8 @@
             "Puts enemies to sleep, then eats their dreams. Occasionally gets sick from eating only bad dreams."
         ]
     },
-    "97": {
+    {
+        "id": 97,
         "name": "Hypno",
         "description": [
             "Seeing its swinging pendulum can induce sleep in three seconds, even in someone who just woke up.",
@@ -2195,7 +2292,8 @@
             "Always holding a pendulum that it swings at a steady rhythm, it causes drowsiness in anyone nearby."
         ]
     },
-    "98": {
+    {
+        "id": 98,
         "name": "Krabby",
         "description": [
             "If it senses danger approaching, it cloaks itself with bubbles from its mouth so it will look bigger.",
@@ -2212,7 +2310,8 @@
             "***** live on beaches, burrowed inside holes dug into the sand. On sandy beaches with little in the way of food, these POKéMON can be seen squabbling with each other over territory."
         ]
     },
-    "99": {
+    {
+        "id": 99,
         "name": "Kingler",
         "description": [
             "The larger pincer has 10,000- horsepower strength. However, it is so heavy, it is difficult to aim.",
@@ -2233,7 +2332,8 @@
             "It can hardly lift its massive, overgrown pincer. The pincer's size makes it difficult to aim properly."
         ]
     },
-    "100": {
+    {
+        "id": 100,
         "name": "Voltorb",
         "description": [
             "It is said to camouflage itself as a POKé BALL. It will self-destruct with very little stimulus.",
@@ -2256,7 +2356,8 @@
             "It was discovered when Poké Balls were introduced. It is said that there is some connection."
         ]
     },
-    "101": {
+    {
+        "id": 101,
         "name": "Electrode",
         "description": [
             "It stores an overflowing amount of electric energy inside its body. Even a small shock makes it explode.",
@@ -2275,7 +2376,8 @@
             "One of *****'s characteristics is its attraction to electricity. It is a problematical POKéMON that congregates mostly at electrical power plants to feed on electricity that has just been generated."
         ]
     },
-    "102": {
+    {
+        "id": 102,
         "name": "Exeggcute",
         "description": [
             "Six of them form a single Pokémon. Should one of the six be lost, the next morning there will once more be six.",
@@ -2301,7 +2403,8 @@
             "Often mistaken for eggs. When disturbed, they quickly gather and attack in swarms."
         ]
     },
-    "103": {
+    {
+        "id": 103,
         "name": "Exeggutor",
         "description": [
             "Each of *****'s three heads is thinking different thoughts. The three don't seem to be very interested in one another.",
@@ -2326,7 +2429,8 @@
             "Originally from the tropics, *****'s heads grow larger from exposure to strong sunlight. It is said that when the heads fall, they group to form an EXEGGCUTE."
         ]
     },
-    "104": {
+    {
+        "id": 104,
         "name": "Cubone",
         "description": [
             "When the memory of its departed mother brings it to tears, its cries echo mournfully within the skull it wears on its head.",
@@ -2349,7 +2453,8 @@
             "This Pokémon wears the skull of its deceased mother. Sometimes *****'s dreams make it cry, but each tear ***** sheds makes it stronger."
         ]
     },
-    "105": {
+    {
+        "id": 105,
         "name": "Marowak",
         "description": [
             "It has been seen pounding boulders with the bone it carries in order to tap out messages to others.",
@@ -2373,7 +2478,8 @@
             "***** is the evolved form of a CUBONE that has overcome its sadness at the loss of its mother and grown tough. This POKéMON's tempered and hardened spirit is not easily broken."
         ]
     },
-    "106": {
+    {
+        "id": 106,
         "name": "Hitmonlee",
         "description": [
             "Its legs freely stretch and contract. Using these springlike limbs, it bowls over foes with devastating kicks. After battle, it rubs down its tired legs.",
@@ -2391,7 +2497,8 @@
             "The legs freely contract and stretch. The stretchy legs allow it to hit a distant foe with a rising kick."
         ]
     },
-    "107": {
+    {
+        "id": 107,
         "name": "Hitmonchan",
         "description": [
             "The spirit of a pro boxer has infused this POKéMON. It throws punches that are faster than a bullet train.",
@@ -2409,7 +2516,8 @@
             "***** is said to possess the spirit of a boxer who had been working towards a world championship. This POKéMON has an indomitable spirit and will never give up in the face of adversity."
         ]
     },
-    "108": {
+    {
+        "id": 108,
         "name": "Lickitung",
         "description": [
             "Its tongue has well-developed nerves that run to the very tip, so it can be deft­ ly manipulated.",
@@ -2434,7 +2542,8 @@
             "Its long tongue, slathered with a gooey saliva, sticks to anything, so it is very useful."
         ]
     },
-    "109": {
+    {
+        "id": 109,
         "name": "Koffing",
         "description": [
             "Getting up close to a ***** will give you a chance to observe, through its thin skin, the toxic gases swirling inside. It blows up at the slightest stimulation.",
@@ -2455,7 +2564,8 @@
             "Its thin, filmy body is filled with gases that cause constant sniffles, coughs and teary eyes."
         ]
     },
-    "110": {
+    {
+        "id": 110,
         "name": "Weezing",
         "description": [
             "If one of the twin KOFFING inflates, the other one deflates. It constantly mixes its poisonous gases.",
@@ -2481,7 +2591,8 @@
             "***** alternately shrinks and inflates its twin bodies to mix together toxic gases inside. The more the gases are mixed, the more powerful the toxins become. The Pokémon also becomes more putrid."
         ]
     },
-    "111": {
+    {
+        "id": 111,
         "name": "Rhyhorn",
         "description": [
             "***** runs in a straight line, smashing everything in its path. It is not bothered even if it rushes headlong into a block of steel. This Pokémon may feel some pain from the collision the next day, however.",
@@ -2504,7 +2615,8 @@
             "It is inept at turning because of its four short legs. It can only charge and run in one direction."
         ]
     },
-    "112": {
+    {
+        "id": 112,
         "name": "Rhydon",
         "description": [
             "Walks on its hind legs. Shows signs of intelligence. Its armor-like hide even repels molten lava.",
@@ -2526,7 +2638,8 @@
             "Its brain devel­ oped when it began walking on hind legs. Its thick hide protects it even in magma."
         ]
     },
-    "113": {
+    {
+        "id": 113,
         "name": "Chansey",
         "description": [
             "A rare and elusive POKéMON that is said to bring happiness to those who manage to catch one.",
@@ -2552,7 +2665,8 @@
             "A gentle and kindhearted Pokémon that shares its nutritious eggs if it sees an injured Pokémon."
         ]
     },
-    "114": {
+    {
+        "id": 114,
         "name": "Tangela",
         "description": [
             "Blue plant vines cloak the POKéMON's identity in a tangled mass. It entangles anything that gets close.",
@@ -2574,7 +2688,8 @@
             "Its identity is obscured by masses of thick blue vines. The vines are said to never stop growing."
         ]
     },
-    "115": {
+    {
+        "id": 115,
         "name": "Kangaskhan",
         "description": [
             "Although it's carrying its baby in a pouch on its belly, ***** is swift on its feet. It intimidates its opponents with quick jabs.",
@@ -2597,7 +2712,8 @@
             "If it is safe, the young gets out of the belly pouch to play. The adult keeps a close eye on the youngster."
         ]
     },
-    "116": {
+    {
+        "id": 116,
         "name": "Horsea",
         "description": [
             "***** makes its home in oceans with gentle currents. If this Pokémon is under attack, it spits out pitch-black ink and escapes.",
@@ -2617,7 +2733,8 @@
             "Its big, developed fins move rapidly, allowing it to swim backward while still facing forward."
         ]
     },
-    "117": {
+    {
+        "id": 117,
         "name": "Seadra",
         "description": [
             "Its spines provide protection. Its fins and bones are prized as traditional-medicine ingredients.",
@@ -2639,7 +2756,8 @@
             "***** generates whirlpools by spinning its body. The whirlpools are strong enough to swallow even fishing boats. This POKéMON weakens prey with these currents, then swallows it whole."
         ]
     },
-    "118": {
+    {
+        "id": 118,
         "name": "Goldeen",
         "description": [
             "Its tail fin billows like an elegant ballroom dress, giving it the nickname of the Water Queen.",
@@ -2667,7 +2785,8 @@
             "Its dorsal and pectoral fins are strongly developed like muscles. It can swim at a speed of five knots."
         ]
     },
-    "119": {
+    {
+        "id": 119,
         "name": "Seaking",
         "description": [
             "In the autumn spawning season, they can be seen swimming power­ fully up rivers and creeks.",
@@ -2693,7 +2812,8 @@
             "It is the male's job to make a nest by carving out boulders in a stream using the horn on its head."
         ]
     },
-    "120": {
+    {
+        "id": 120,
         "name": "Staryu",
         "description": [
             "Even if its body is torn, it can regenerate as long as the glowing central core remains intact.",
@@ -2720,7 +2840,8 @@
             "Large numbers of these Pokémon make their home at the seaside. At night, a strange red glow radiates from the center of their bodies."
         ]
     },
-    "121": {
+    {
+        "id": 121,
         "name": "Starmie",
         "description": [
             "It rotates its geometrically shaped body to swim through the water. It always seems to be sending out mysterious radio waves.",
@@ -2747,7 +2868,8 @@
             "At the center of its body is a red core, which sends mysterious radio signals into the night sky."
         ]
     },
-    "122": {
+    {
+        "id": 122,
         "name": "Mr. Mime",
         "description": [
             "If interrupted while it is miming, it will slap around the offender with its broad hands.",
@@ -2772,7 +2894,8 @@
             "A ***** is a master of pantomime. It can convince others that something unseeable actually exists. Once believed, the imaginary object does become real."
         ]
     },
-    "123": {
+    {
+        "id": 123,
         "name": "Scyther",
         "description": [
             "Leaps out of tall grass and slices prey with its scythes. The move­ ment looks like that of a ninja.",
@@ -2798,7 +2921,8 @@
             "With ninja-like agility and speed, it can create the illusion that there is more than one."
         ]
     },
-    "124": {
+    {
+        "id": 124,
         "name": "Jynx",
         "description": [
             "It speaks a lan­ guage similar to that of humans. However, it seems to use dancing to communicate.",
@@ -2819,7 +2943,8 @@
             "It seductively wiggles its hips as it walks. It can cause people to dance in unison with it."
         ]
     },
-    "125": {
+    {
+        "id": 125,
         "name": "Electabuzz",
         "description": [
             "Electricity leaks from it in amounts far greater than the amount of electricity it eats.",
@@ -2847,7 +2972,8 @@
             "Half of all blackouts occur when this Pokémon appears at power plants and eats electricity."
         ]
     },
-    "126": {
+    {
+        "id": 126,
         "name": "Magmar",
         "description": [
             "These Pokémon's bodies are constantly burning. ***** are feared as one of the causes behind fires.",
@@ -2873,7 +2999,8 @@
             "The fiery surface of its body gives off a wavering, rippling glare that is similar to the sun."
         ]
     },
-    "127": {
+    {
+        "id": 127,
         "name": "Pinsir",
         "description": [
             "It grips its prey in its pincers and splits them apart. Although it is a powerful Pokémon, it can't deal with the cold.",
@@ -2901,7 +3028,8 @@
             "With its horns, it digs burrows to sleep in at night. In the morning, damp soil clings to its body."
         ]
     },
-    "128": {
+    {
+        "id": 128,
         "name": "Tauros",
         "description": [
             "When it is about to tackle, it whips its body repeatedly with its three long tails.",
@@ -2925,7 +3053,8 @@
             "This POKéMON is not satisfied unless it is rampaging at all times. If there is no opponent for ***** to battle, it will charge at thick trees and knock them down to calm itself."
         ]
     },
-    "129": {
+    {
+        "id": 129,
         "name": "Magikarp",
         "description": [
             "***** is a pathetic excuse for a POKéMON that is only capable of flopping and splashing. This behavior prompted scientists to undertake research into it.",
@@ -2953,7 +3082,8 @@
             "***** is virtually useless in battle as it can only splash around. As a result, it is considered to be weak. However, it is actually a very hardy Pokémon that can survive in any body of water no matter how polluted it is."
         ]
     },
-    "130": {
+    {
+        "id": 130,
         "name": "Gyarados",
         "description": [
             "It is an extremely vicious and violent POKéMON. When humans begin to fight, it will appear and burn everything to the ground with intensely hot flames.",
@@ -2980,7 +3110,8 @@
             "Once ***** goes on a rampage, its ferociously violent blood doesn't calm until it has burned everything down. There are records of this Pokémon's rampages lasting a whole month."
         ]
     },
-    "131": {
+    {
+        "id": 131,
         "name": "Lapras",
         "description": [
             "It ferries people across the sea on its back. It may sing an enchanting cry if it is in a good mood.",
@@ -3005,7 +3136,8 @@
             "People have driven ***** almost to the point of extinction. In the evenings, this Pokémon is said to sing plaintively as it seeks what few others of its kind still remain."
         ]
     },
-    "132": {
+    {
+        "id": 132,
         "name": "Ditto",
         "description": [
             "When it spots an enemy, its body transfigures into an almost-perfect copy of its opponent.",
@@ -3030,7 +3162,8 @@
             "When it encounters another *****, it will move faster than normal to duplicate that opponent exactly."
         ]
     },
-    "133": {
+    {
+        "id": 133,
         "name": "Eevee",
         "description": [
             "An extremely rare POKéMON that may evolve in a number of different ways depending on stimuli.",
@@ -3056,7 +3189,8 @@
             "An ***** has an unstable genetic makeup that suddenly mutates due to its environment. Radiation from various STONES causes this POKéMON to evolve."
         ]
     },
-    "134": {
+    {
+        "id": 134,
         "name": "Vaporeon",
         "description": [
             "***** underwent a spontaneous mutation and grew fins and gills that allow it to live underwater. This POKéMON has the ability to freely control water.",
@@ -3082,7 +3216,8 @@
             "Lives close to water. Its long tail is ridged with a fin which is often mistaken for a mermaid's."
         ]
     },
-    "135": {
+    {
+        "id": 135,
         "name": "Jolteon",
         "description": [
             "Every hair on its body starts to stand sharply on end if it becomes charged with electricity.",
@@ -3106,7 +3241,8 @@
             "If it is angered or startled, the fur all over its body bristles like sharp needles that pierce foes."
         ]
     },
-    "136": {
+    {
+        "id": 136,
         "name": "Flareon",
         "description": [
             "The flame chamber inside its body ignites when ***** gets agitated, reaching temperatures of up to 1,650 degrees Fahrenheit.",
@@ -3134,7 +3270,8 @@
             "Its average body temperature is between 1,300 and 1,500 degrees Fahrenheit. In its internal flame sac, temperatures reach 3,000 degrees."
         ]
     },
-    "137": {
+    {
+        "id": 137,
         "name": "Porygon",
         "description": [
             "A man-made Pokémon that came about as a result of research. It is programmed with only basic motions.",
@@ -3163,7 +3300,8 @@
             "A Pokémon that consists entirely of programming code. It is capable of moving freely in cyberspace."
         ]
     },
-    "138": {
+    {
+        "id": 138,
         "name": "Omanyte",
         "description": [
             "Because some ***** manage to escape after being restored or are released into the wild by people, this species is becoming a problem.",
@@ -3187,7 +3325,8 @@
             "Revived from an ancient fossil, this Pokémon uses air stored in its shell to sink and rise in water."
         ]
     },
-    "139": {
+    {
+        "id": 139,
         "name": "Omastar",
         "description": [
             "An ***** uses its tentacles to capture its prey. It is believed to have become extinct because its shell grew too large, making its movements slow and ponderous.",
@@ -3208,7 +3347,8 @@
             "Once wrapped around its prey, it never lets go. It eats the prey by tearing at it with sharp fangs."
         ]
     },
-    "140": {
+    {
+        "id": 140,
         "name": "Kabuto",
         "description": [
             "This POKéMON lived in ancient times. On rare occasions, it has been discovered as a living fossil.",
@@ -3231,7 +3371,8 @@
             "This Pokémon became extinct everywhere, except in a few areas. It protects itself with its hard shell."
         ]
     },
-    "141": {
+    {
+        "id": 141,
         "name": "Kabutops",
         "description": [
             "Its sleek shape is perfect for swim­ ming. It slashes prey with its claws and drains the body fluids.",
@@ -3253,7 +3394,8 @@
             "With sharp claws, this ferocious, ancient POKéMON rips apart prey and sucks their body fluids."
         ]
     },
-    "142": {
+    {
+        "id": 142,
         "name": "Aerodactyl",
         "description": [
             "A ferocious, prehistoric POKéMON that goes for the enemy's throat with its serrated, sawlike fangs.",
@@ -3278,7 +3420,8 @@
             "A ferocious, pre­ historic POKéMON that goes for the enemy's throat with its serrated saw-like fangs."
         ]
     },
-    "143": {
+    {
+        "id": 143,
         "name": "Snorlax",
         "description": [
             "Will eat anything, even if the food happens to be a little moldy. It never gets an upset stomach.",
@@ -3303,7 +3446,8 @@
             "What sounds like its cry may actually be its snores or the rumblings of its hungry belly."
         ]
     },
-    "144": {
+    {
+        "id": 144,
         "name": "Articuno",
         "description": [
             "A legendary bird POKéMON that is said to appear to doomed people who are lost in icy mountains.",
@@ -3323,7 +3467,8 @@
             "The magnificent, seemingly translu­ cent wings of this legendary bird POKéMON are said to be made of ice."
         ]
     },
-    "145": {
+    {
+        "id": 145,
         "name": "Zapdos",
         "description": [
             "A legendary bird POKéMON that is said to appear from clouds while dropping enormous lightning bolts.",
@@ -3344,7 +3489,8 @@
             "This Pokémon has complete control over electricity. There are tales of ***** nesting in the dark depths of pitch-black thunderclouds."
         ]
     },
-    "146": {
+    {
+        "id": 146,
         "name": "Moltres",
         "description": [
             "This legendary bird POKéMON is said to bring early spring to the wintry lands it visits.",
@@ -3366,7 +3512,8 @@
             "It is said to be the legendary bird POKéMON of fire. Every flap of its wings creates a dazzling flare of flames."
         ]
     },
-    "147": {
+    {
+        "id": 147,
         "name": "Dratini",
         "description": [
             "A ***** continually molts and sloughs off its old skin. It does so because the life energy within its body steadily builds to reach uncontrollable levels.",
@@ -3389,7 +3536,8 @@
             "This Pokémon was long considered to be no more than a myth. The small lump on a *****'s forehead is actually a horn that's still coming in."
         ]
     },
-    "148": {
+    {
+        "id": 148,
         "name": "Dragonair",
         "description": [
             "Some say that if you see it at the start of the year, flying through the sky and twisting its body, you'll be healthy all year long.",
@@ -3412,7 +3560,8 @@
             "From time immemorial, it has been venerated by agricultural peoples as an entity able to control the weather."
         ]
     },
-    "149": {
+    {
+        "id": 149,
         "name": "Dragonite",
         "description": [
             "An extremely rarely seen marine POKéMON. Its intelligence is said to match that of humans.",
@@ -3437,7 +3586,8 @@
             "It can fly in spite of its big and bulky physique. It circles the globe in just 16 hours."
         ]
     },
-    "150": {
+    {
+        "id": 150,
         "name": "Mewtwo",
         "description": [
             "A POKéMON that was created by genetic manipulation. However, even though the scientific power of humans made its body, they failed to give it a warm heart.",
@@ -3458,7 +3608,8 @@
             "A Pokémon created by recombining Mew's genes. It's said to have the most savage heart among Pokémon."
         ]
     },
-    "151": {
+    {
+        "id": 151,
         "name": "Mew",
         "description": [
             "Because it can learn any move, some people began research to see if it is the ancestor of all POKéMON.",
@@ -3475,4 +3626,4 @@
             "Apparently, it appears only to those people who are pure of heart and have a strong desire to see it."
         ]
     }
-}
+]

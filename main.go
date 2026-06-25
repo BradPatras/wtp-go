@@ -15,16 +15,13 @@ import (
 var descriptionsJSON []byte
 
 type Pokemon struct {
+	Id          int      `json:"id"`
 	Name        string   `json:"name"`
 	Description []string `json:"description"`
 }
 
-func init() {
-
-}
-
 func main() {
-	var pokes map[string]Pokemon
+	var pokes []Pokemon
 	if err := json.Unmarshal(descriptionsJSON, &pokes); err != nil {
 		panic(err)
 	}
@@ -40,7 +37,8 @@ func main() {
 }
 
 type model struct {
-	pokes     map[string]Pokemon
+	isStarted bool
+	pokes     []Pokemon
 	textInput textinput.Model
 	width     int
 	height    int
@@ -72,6 +70,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, cmd
 }
 
+func (m model) processGuess(guess string) {
+
+}
+
 func (m model) View() tea.View {
 	if m.width == 0 {
 		return tea.NewView("Loading...")
@@ -97,7 +99,7 @@ func (m model) headerView() string {
 }
 
 func (m model) descriptionView() string {
-	return m.pokes["151"].Name
+	return m.pokes[150].Name
 }
 
 func (m model) inputView() string {
