@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"encoding/json"
 	"log"
+	"math/rand"
 	"strconv"
 
 	"charm.land/bubbles/v2/textinput"
@@ -37,11 +38,13 @@ func main() {
 }
 
 type model struct {
-	isStarted bool
-	pokes     []Pokemon
-	textInput textinput.Model
-	width     int
-	height    int
+	isStarted   bool
+	currentPoke int
+	currentDesc int
+	pokes       []Pokemon
+	textInput   textinput.Model
+	width       int
+	height      int
 }
 
 func (m model) Init() tea.Cmd {
@@ -56,10 +59,15 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg.String() {
 		case "ctrl+c", "esc":
 			return m, tea.Quit
-		case "ctrl+z":
-			return m, tea.Suspend
 		case "enter":
-			return m, tea.Quit
+			if m.pokes[m.currentPoke].Name == m.textInput.Value() {
+				m.currentPoke = rand.Intn(len(m.pokes))
+				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+				m.textInput.Reset()
+			}
+		case "tab":
+			m.currentPoke = rand.Intn(len(m.pokes))
+			m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
 		}
 	case tea.WindowSizeMsg:
 		m.width = msg.Width
@@ -70,16 +78,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, cmd
 }
 
-func (m model) processGuess(guess string) {
-
-}
-
 func (m model) View() tea.View {
 	if m.width == 0 {
 		return tea.NewView("Loading...")
 	}
 
-	// style := lipgloss.NewStyle().Foreground(lipgloss.Color("#6cacd4"))
 	all := lipgloss.JoinVertical(
 		lipgloss.Left,
 		m.headerView(),
@@ -99,7 +102,7 @@ func (m model) headerView() string {
 }
 
 func (m model) descriptionView() string {
-	return m.pokes[150].Name
+	return lipgloss.NewStyle().Width(m.width).Render(m.pokes[m.currentPoke].Description[m.currentDesc])
 }
 
 func (m model) inputView() string {
@@ -107,5 +110,7 @@ func (m model) inputView() string {
 }
 
 func (m model) footerView() string {
-	return "esc to quit"
+	style := lipgloss.NewStyle().Faint(true)
+	keyStyle := lipgloss.NewStyle().Bold(true).Underline(true).Faint(true)
+	return keyStyle.Render("tab") + style.Render(" to skip | ") + keyStyle.Render("esc") + style.Render(" to quit")
 }
