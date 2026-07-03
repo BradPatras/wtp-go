@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"strconv"
+	"strings"
 
 	"charm.land/bubbles/v2/textinput"
 	tea "charm.land/bubbletea/v2"
@@ -64,7 +65,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "enter":
 			if !m.isStarted {
 				m.isStarted = true
-			} else if m.pokes[m.currentPoke].Name == m.textInput.Value() {
+			} else if strings.ToLower(m.pokes[m.currentPoke].Name) == strings.ToLower(m.textInput.Value()) {
+				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
 				m.currentPoke = rand.Intn(len(m.pokes))
 				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
 				m.textInput.Reset()
