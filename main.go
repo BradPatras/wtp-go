@@ -15,6 +15,8 @@ import (
 //go:embed all-descriptions.json
 var descriptionsJSON []byte
 
+const splash = " _       ____                    __  __          __     \n| |     / / /_  ____ ( )_____   / /_/ /_  ____ _/ /_    \n| | /| / / __ \\/ __ \\|// ___/  / __/ __ \\/ __ `/ __/    \n| |/ |/ / / / / /_/ / (__  )  / /_/ / / / /_/ / /_      \n|__/|__/_/ /_/\\____/ /____/   \\__/_/ /_/\\__,_/\\__/      \n    ____        __    __                      ___  __   \n   / __ \\____  / /___/_/ ____ ___  ____  ____/__ \\/ /   \n  / /_/ / __ \\/ //_/ _ \\/ __ `__ \\/ __ \\/ __ \\/ _/ /    \n / ____/ /_/ / ,< /  __/ / / / / / /_/ / / / /_//_/     \n/_/    \\____/_/|_|\\___/_/ /_/ /_/\\____/_/ /_(_)(_)      \n                                                        "
+
 type Pokemon struct {
 	Id          int      `json:"id"`
 	Name        string   `json:"name"`
@@ -60,7 +62,9 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "ctrl+c", "esc":
 			return m, tea.Quit
 		case "enter":
-			if m.pokes[m.currentPoke].Name == m.textInput.Value() {
+			if !m.isStarted {
+				m.isStarted = true
+			} else if m.pokes[m.currentPoke].Name == m.textInput.Value() {
 				m.currentPoke = rand.Intn(len(m.pokes))
 				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
 				m.textInput.Reset()
@@ -83,18 +87,35 @@ func (m model) View() tea.View {
 		return tea.NewView("Loading...")
 	}
 
-	all := lipgloss.JoinVertical(
-		lipgloss.Left,
-		m.headerView(),
-		m.descriptionView(),
-		m.inputView(),
-		m.footerView(),
-	)
-	v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Left, lipgloss.Bottom, all))
+	if !m.isStarted {
+		splashView := lipgloss.JoinVertical(
+			lipgloss.Center,
+			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+			lipgloss.NewStyle().Faint(true).Underline(true).Render("enter")+lipgloss.NewStyle().Faint(true).Render(" to begin"),
+		)
+		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, splashView))
 
-	v.AltScreen = true
+		v.AltScreen = true
+		return v
+	} else {
+		all := lipgloss.JoinVertical(
+			lipgloss.Center,
+			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+			m.headerView(),
+			m.descriptionView(),
+			"",
+			m.inputView(),
+			"",
+			"",
+			"",
+			m.footerView(),
+		)
 
-	return v
+		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
+		v.AltScreen = true
+
+		return v
+	}
 }
 
 func (m model) headerView() string {
@@ -102,7 +123,7 @@ func (m model) headerView() string {
 }
 
 func (m model) descriptionView() string {
-	return lipgloss.NewStyle().Width(m.width).Render(m.pokes[m.currentPoke].Description[m.currentDesc])
+	return lipgloss.NewStyle().Width(m.width).Align(lipgloss.Center).Render(m.pokes[m.currentPoke].Description[m.currentDesc])
 }
 
 func (m model) inputView() string {
