@@ -34,7 +34,15 @@ func main() {
 	input.Focus()
 	input.CharLimit = 50
 	input.SetWidth(50)
-	p := tea.NewProgram(model{pokes: pokes, textInput: input})
+	input.SetVirtualCursor(true)
+	s := input.Styles()
+	s.Cursor.Blink = false
+	input.SetStyles(s)
+
+	currentPoke := rand.Intn(len(pokes))
+	currentDesc := rand.Intn(len(pokes[currentPoke].Description))
+
+	p := tea.NewProgram(model{pokes: pokes, textInput: input, currentPoke: currentPoke, currentDesc: currentDesc})
 	if _, err := p.Run(); err != nil {
 		log.Fatal(err)
 	}
@@ -65,7 +73,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "enter":
 			if !m.isStarted {
 				m.isStarted = true
-			} else if strings.ToLower(m.pokes[m.currentPoke].Name) == strings.ToLower(m.textInput.Value()) {
+			} else if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
 				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
 				m.currentPoke = rand.Intn(len(m.pokes))
 				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
@@ -121,15 +129,15 @@ func (m model) View() tea.View {
 }
 
 func (m model) headerView() string {
-	return strconv.Itoa(len(m.pokes))
+	return strconv.Itoa(len(m.pokes)) + " remaining"
 }
 
 func (m model) descriptionView() string {
-	return lipgloss.NewStyle().Width(m.width).Align(lipgloss.Center).Render(m.pokes[m.currentPoke].Description[m.currentDesc])
+	return lipgloss.NewStyle().Border(lipgloss.RoundedBorder()).PaddingLeft(4).PaddingRight(4).Width(min(m.width, 80)).Align(lipgloss.Center).Render(m.pokes[m.currentPoke].Description[m.currentDesc])
 }
 
 func (m model) inputView() string {
-	return m.textInput.View()
+	return lipgloss.NewStyle().Width(len(m.textInput.Value()) + 2).Render(m.textInput.View())
 }
 
 func (m model) footerView() string {
