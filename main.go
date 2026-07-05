@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"strconv"
 	"strings"
+	"time"
 
 	"charm.land/bubbles/v2/textinput"
 	tea "charm.land/bubbletea/v2"
@@ -16,7 +17,11 @@ import (
 //go:embed all-descriptions.json
 var descriptionsJSON []byte
 
-const splash = " _       ____                    __  __          __     \n| |     / / /_  ____ ( )_____   / /_/ /_  ____ _/ /_    \n| | /| / / __ \\/ __ \\|// ___/  / __/ __ \\/ __ `/ __/    \n| |/ |/ / / / / /_/ / (__  )  / /_/ / / / /_/ / /_      \n|__/|__/_/ /_/\\____/ /____/   \\__/_/ /_/\\__,_/\\__/      \n    ____        __    __                      ___  __   \n   / __ \\____  / /___/_/ ____ ___  ____  ____/__ \\/ /   \n  / /_/ / __ \\/ //_/ _ \\/ __ `__ \\/ __ \\/ __ \\/ _/ /    \n / ____/ /_/ / ,< /  __/ / / / / / /_/ / / / /_//_/     \n/_/    \\____/_/|_|\\___/_/ /_/ /_/\\____/_/ /_(_)(_)      \n                                                        "
+const splash = "  _      __ __                ______ __         __  \n | | /| / // /  ___ ( )___   /_  __// /  ___ _ / /_ \n | |/ |/ // _ \\/ _ \\|/(_-<    / /  / _ \\/ _ `// __/ \n |__/|__//_//_/\\___/ /___/   /_/  /_//_/\\_,_/ \\__/  \n     ___         __     __                  ___   __\n    / _ \\ ___   / /__ _/_/ __ _  ___   ___ /__ \\ / /\n   / ___// _ \\ /  '_// -_)/  ' \\/ _ \\ / _ \\ /__//_/ \n  /_/    \\___//_/\\_\\ \\__//_/_/_/\\___//_//_/(_) (_)  \n                                                    \n"
+
+// Message used to make a field "flash"
+type FlashFieldMsg string
+type UnFlashFieldMsg string
 
 type Pokemon struct {
 	Id          int      `json:"id"`
@@ -42,20 +47,23 @@ func main() {
 	currentPoke := rand.Intn(len(pokes))
 	currentDesc := rand.Intn(len(pokes[currentPoke].Description))
 
-	p := tea.NewProgram(model{pokes: pokes, textInput: input, currentPoke: currentPoke, currentDesc: currentDesc})
+	p := tea.NewProgram(model{pokes: pokes, textInput: input, currentPoke: currentPoke, currentDesc: currentDesc, flashingFields: make(map[string]int)})
 	if _, err := p.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
 
 type model struct {
-	isStarted   bool
-	currentPoke int
-	currentDesc int
-	pokes       []Pokemon
-	textInput   textinput.Model
-	width       int
-	height      int
+	isStarted      bool
+	currentPoke    int
+	currentDesc    int
+	pokes          []Pokemon
+	textInput      textinput.Model
+	width          int
+	height         int
+	skips          int
+	misses         int
+	flashingFields map[string]int
 }
 
 func (m model) Init() tea.Cmd {
@@ -63,7 +71,7 @@ func (m model) Init() tea.Cmd {
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	var cmd tea.Cmd
+	var cmds []tea.Cmd
 
 	switch msg := msg.(type) {
 	case tea.KeyPressMsg:
@@ -74,22 +82,41 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if !m.isStarted {
 				m.isStarted = true
 			} else if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
+				cmds = append(cmds, m.flashField("score"))
 				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
 				m.currentPoke = rand.Intn(len(m.pokes))
 				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
 				m.textInput.Reset()
+			} else {
+				cmds = append(cmds, m.flashField("misses"))
+				m.misses++
 			}
 		case "tab":
+			m.skips++
+			cmds = append(cmds, m.flashField("skips"))
 			m.currentPoke = rand.Intn(len(m.pokes))
 			m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
 		}
 	case tea.WindowSizeMsg:
 		m.width = msg.Width
 		m.height = msg.Height
+	case UnFlashFieldMsg:
+		current := m.flashingFields[string(msg)]
+		m.flashingFields[string(msg)] = max(0, current-1)
 	}
 
-	m.textInput, cmd = m.textInput.Update(msg)
-	return m, cmd
+	var tcmd tea.Cmd
+	m.textInput, tcmd = m.textInput.Update(msg)
+	cmds = append(cmds, tcmd)
+
+	return m, tea.Batch(cmds...)
+}
+
+func (m model) flashField(fieldKey string) tea.Cmd {
+	m.flashingFields[string(fieldKey)]++
+	return tea.Tick(300*time.Millisecond, func(t time.Time) tea.Msg {
+		return UnFlashFieldMsg(string(fieldKey))
+	})
 }
 
 func (m model) View() tea.View {
@@ -129,7 +156,37 @@ func (m model) View() tea.View {
 }
 
 func (m model) headerView() string {
-	return strconv.Itoa(len(m.pokes)) + " remaining"
+	score := "score: " + strconv.Itoa(151-len(m.pokes))
+	skips := "skips: " + strconv.Itoa(m.skips)
+	misses := "misses: " + strconv.Itoa(m.misses)
+	flashSkips := m.flashingFields["skips"] > 0
+	flashMisses := m.flashingFields["misses"] > 0
+	flashScore := m.flashingFields["score"] > 0
+
+	var skipStyle lipgloss.Style
+	if flashSkips {
+		skipStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#e09500"))
+	} else {
+		skipStyle = lipgloss.NewStyle().Faint(true)
+	}
+
+	var scoreStyle lipgloss.Style
+	if flashScore {
+		scoreStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#33cc66"))
+	} else {
+		scoreStyle = lipgloss.NewStyle().Faint(true)
+	}
+
+	var missesStyle lipgloss.Style
+	if flashMisses {
+		missesStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#ff0000"))
+	} else {
+		missesStyle = lipgloss.NewStyle().Faint(true)
+	}
+
+	return scoreStyle.Render(score) + " | " +
+		skipStyle.Render(skips) + " | " +
+		missesStyle.Render(misses)
 }
 
 func (m model) descriptionView() string {
