@@ -30,6 +30,13 @@ type Pokemon struct {
 }
 
 func main() {
+	p := tea.NewProgram(createModel())
+	if _, err := p.Run(); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func createModel() model {
 	var pokes []Pokemon
 	if err := json.Unmarshal(descriptionsJSON, &pokes); err != nil {
 		panic(err)
@@ -47,10 +54,7 @@ func main() {
 	currentPoke := rand.Intn(len(pokes))
 	currentDesc := rand.Intn(len(pokes[currentPoke].Description))
 
-	p := tea.NewProgram(model{pokes: pokes, textInput: input, currentPoke: currentPoke, currentDesc: currentDesc, flashingFields: make(map[string]int)})
-	if _, err := p.Run(); err != nil {
-		log.Fatal(err)
-	}
+	return model{pokes: pokes, textInput: input, currentPoke: currentPoke, currentDesc: currentDesc, flashingFields: make(map[string]int)}
 }
 
 type model struct {
@@ -77,11 +81,24 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyPressMsg:
 		switch msg.String() {
-		case "ctrl+c", "esc":
+		case "ctrl+c":
 			return m, tea.Quit
+		case "esc":
+			if m.isStarted {
+				m.isStarted = false
+
+			} else {
+				return m, tea.Quit
+			}
 		case "enter":
 			if !m.isStarted {
 				m.isStarted = true
+				m.pokes = fetchPokes()
+				m.misses = 0
+				m.skips = 0
+				m.currentPoke = rand.Intn(len(m.pokes))
+				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+				m.textInput.SetValue("")
 			} else if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
 				cmds = append(cmds, m.flashField("score"))
 				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
@@ -115,6 +132,14 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	cmds = append(cmds, tcmd)
 
 	return m, tea.Batch(cmds...)
+}
+
+func fetchPokes() []Pokemon {
+	var pokes []Pokemon
+	if err := json.Unmarshal(descriptionsJSON, &pokes); err != nil {
+		panic(err)
+	}
+	return pokes
 }
 
 func (m model) flashField(fieldKey string) tea.Cmd {
