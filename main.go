@@ -96,14 +96,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.pokes = fetchPokes()
 				m.misses = 0
 				m.skips = 0
-				m.currentPoke = rand.Intn(len(m.pokes))
-				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
-				m.textInput.SetValue("")
+				m.selectRandomPoke()
+				m.textInput.Reset()
 			} else if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
 				cmds = append(cmds, m.flashField("score"))
 				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
-				m.currentPoke = rand.Intn(len(m.pokes))
-				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+				m.selectRandomPoke()
 				m.textInput.Reset()
 			} else {
 				cmds = append(cmds, m.flashField("misses"))
@@ -132,6 +130,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	cmds = append(cmds, tcmd)
 
 	return m, tea.Batch(cmds...)
+}
+
+func (m model) selectRandomPoke() model {
+	m.currentPoke = rand.Intn(len(m.pokes))
+	m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+	return m
 }
 
 func fetchPokes() []Pokemon {
