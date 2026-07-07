@@ -64,6 +64,7 @@ type model struct {
 	skips          int
 	misses         int
 	flashingFields map[string]int
+	endlessMode    bool
 }
 
 func (m model) Init() tea.Cmd {
@@ -92,10 +93,14 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.misses++
 			}
 		case "tab":
-			m.skips++
-			cmds = append(cmds, m.flashField("skips"))
-			m.currentPoke = rand.Intn(len(m.pokes))
-			m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+			if m.isStarted {
+				m.skips++
+				cmds = append(cmds, m.flashField("skips"))
+				m.currentPoke = rand.Intn(len(m.pokes))
+				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+			} else {
+				m.endlessMode = !m.endlessMode
+			}
 		}
 	case tea.WindowSizeMsg:
 		m.width = msg.Width
@@ -128,7 +133,10 @@ func (m model) View() tea.View {
 		splashView := lipgloss.JoinVertical(
 			lipgloss.Center,
 			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
-			lipgloss.NewStyle().Faint(true).Underline(true).Render("enter")+lipgloss.NewStyle().Faint(true).Render(" to begin"),
+			m.modeSelectorView(),
+			"",
+			lipgloss.NewStyle().Faint(true).Underline(true).Render("enter")+lipgloss.NewStyle().Faint(true).Render(" to begin, ")+
+				lipgloss.NewStyle().Faint(true).Underline(true).Render("tab")+lipgloss.NewStyle().Faint(true).Render(" to switch mode"),
 		)
 		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, splashView))
 
@@ -152,6 +160,18 @@ func (m model) View() tea.View {
 		v.AltScreen = true
 
 		return v
+	}
+}
+
+func (m model) modeSelectorView() string {
+	if m.endlessMode {
+		return lipgloss.NewStyle().Foreground(lipgloss.Color("#008800")).Render("[endless]") +
+			" | " +
+			lipgloss.NewStyle().Faint(true).Render(" time attack ")
+	} else {
+		return lipgloss.NewStyle().Faint(true).Render(" endless ") +
+			" | " +
+			lipgloss.NewStyle().Foreground(lipgloss.Color("#008800")).Render("[time attack]")
 	}
 }
 
