@@ -19,9 +19,8 @@ var descriptionsJSON []byte
 
 const splash = "  _      __ __       _        ______ __         __ \n | | /| / // /  ___ |/ ___   /_  __// /  ___ _ / /_\n | |/ |/ // _ \\/ _ \\  (_-<    / /  / _ \\/ _ `// __/\n |__/|__//_//_/\\___/ /___/   /_/  /_//_/\\_,_/ \\__/ \n   ___         __                         ___   __ \n  / _ \\ ___   / /__ ___  __ _  ___   ___ /__ \\ / / \n / ___// _ \\ /  '_// -_)/  ' \\/ _ \\ / _ \\ /__//_/  \n/_/    \\___//_/\\_\\ \\__//_/_/_/\\___//_//_/(_) (_)   \n                                                   \n"
 
-// Message used to make a field "flash"
-type FlashFieldMsg string
 type UnFlashFieldMsg string
+type PenaltyExpiredMsg struct{}
 
 type Pokemon struct {
 	Id          int      `json:"id"`
@@ -59,6 +58,7 @@ func createModel() model {
 
 type model struct {
 	isStarted      bool
+	isGameOver     bool
 	currentPoke    int
 	currentDesc    int
 	pokes          []Pokemon
@@ -67,8 +67,11 @@ type model struct {
 	height         int
 	skips          int
 	misses         int
+	time           int
 	flashingFields map[string]int
 	endlessMode    bool
+	penalties      int
+	currentPenalty int
 }
 
 func (m model) Init() tea.Cmd {
@@ -96,12 +99,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.pokes = fetchPokes()
 				m.misses = 0
 				m.skips = 0
-				m.selectRandomPoke()
+				m = m.selectRandomPoke()
 				m.textInput.Reset()
 			} else if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
 				cmds = append(cmds, m.flashField("score"))
 				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
-				m.selectRandomPoke()
+				m = m.selectRandomPoke()
 				m.textInput.Reset()
 			} else {
 				cmds = append(cmds, m.flashField("misses"))
@@ -109,10 +112,16 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 		case "tab":
 			if m.isStarted {
-				m.skips++
-				cmds = append(cmds, m.flashField("skips"))
-				m.currentPoke = rand.Intn(len(m.pokes))
-				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+				if m.endlessMode {
+					m.skips++
+					cmds = append(cmds, m.flashField("skips"))
+					m.currentPoke = rand.Intn(len(m.pokes))
+					m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+				} else {
+					newM, cmd := m.skipPenalty()
+					m = newM
+					cmds = append(cmds, cmd)
+				}
 			} else {
 				m.endlessMode = !m.endlessMode
 			}
@@ -123,6 +132,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case UnFlashFieldMsg:
 		current := m.flashingFields[string(msg)]
 		m.flashingFields[string(msg)] = max(0, current-1)
+	case PenaltyExpiredMsg:
+		m.penalties--
+		if m.penalties < 1 {
+			m.currentPenalty = 0
+		}
 	}
 
 	var tcmd tea.Cmd
@@ -153,6 +167,22 @@ func (m model) flashField(fieldKey string) tea.Cmd {
 	})
 }
 
+func (m model) missPenalty() (model, tea.Cmd) {
+	m.time -= 2
+	m.penalties++
+	return m, tea.Tick(800*time.Millisecond, func(t time.Time) tea.Msg {
+		return PenaltyExpiredMsg{}
+	})
+}
+
+func (m model) skipPenalty() (model, tea.Cmd) {
+	m.time -= 5
+	m.penalties++
+	return m, tea.Tick(800*time.Millisecond, func(t time.Time) tea.Msg {
+		return PenaltyExpiredMsg{}
+	})
+}
+
 func (m model) View() tea.View {
 	if m.width == 0 {
 		return tea.NewView("Loading...")
@@ -171,11 +201,29 @@ func (m model) View() tea.View {
 
 		v.AltScreen = true
 		return v
+	} else if m.endlessMode {
+		all := lipgloss.JoinVertical(
+			lipgloss.Center,
+			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+			m.endlessHeaderView(),
+			m.descriptionView(),
+			"",
+			m.inputView(),
+			"",
+			"",
+			"",
+			m.footerView(),
+		)
+
+		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
+		v.AltScreen = true
+
+		return v
 	} else {
 		all := lipgloss.JoinVertical(
 			lipgloss.Center,
 			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
-			m.headerView(),
+			m.endlessHeaderView(),
 			m.descriptionView(),
 			"",
 			m.inputView(),
@@ -204,7 +252,7 @@ func (m model) modeSelectorView() string {
 	}
 }
 
-func (m model) headerView() string {
+func (m model) endlessHeaderView() string {
 	score := "score: " + strconv.Itoa(151-len(m.pokes))
 	skips := "skips: " + strconv.Itoa(m.skips)
 	misses := "misses: " + strconv.Itoa(m.misses)
@@ -236,6 +284,11 @@ func (m model) headerView() string {
 	return scoreStyle.Render(score) + " | " +
 		skipStyle.Render(skips) + " | " +
 		missesStyle.Render(misses)
+}
+
+func (m model) timedHeaderView() string {
+	score := "score: " + strconv.Itoa(151-len(m.pokes))
+	timer := "time: " + strconv.Itoa(m.time)
 }
 
 func (m model) descriptionView() string {
