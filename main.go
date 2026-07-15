@@ -21,6 +21,7 @@ const splash = "  _      __ __       _        ______ __         __ \n | | /| / /
 
 type UnFlashFieldMsg string
 type PenaltyExpiredMsg struct{}
+type TickMsg struct{}
 
 type Pokemon struct {
 	Id          int      `json:"id"`
@@ -89,7 +90,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "esc":
 			if m.isStarted {
 				m.isStarted = false
-
+				m.isGameOver = false
 			} else {
 				return m, tea.Quit
 			}
@@ -101,6 +102,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.skips = 0
 				m = m.selectRandomPoke()
 				m.textInput.Reset()
+				if !m.endlessMode {
+					m.time = 60
+					cmds = append(cmds, func() tea.Msg { return TickMsg{} })
+				}
 			} else if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
 				cmds = append(cmds, m.flashField("score"))
 				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
@@ -111,17 +116,21 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.misses++
 			}
 		case "tab":
-			if m.isStarted {
+			if m.isStarted && !m.isGameOver {
+				m.textInput.Reset()
+				cmds = append(cmds, m.flashField("skips"))
+				m.currentPoke = rand.Intn(len(m.pokes))
+				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+
 				if m.endlessMode {
 					m.skips++
-					cmds = append(cmds, m.flashField("skips"))
-					m.currentPoke = rand.Intn(len(m.pokes))
-					m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
 				} else {
 					newM, cmd := m.skipPenalty()
 					m = newM
 					cmds = append(cmds, cmd)
 				}
+			} else if m.isGameOver {
+				// no-op
 			} else {
 				m.endlessMode = !m.endlessMode
 			}
@@ -136,6 +145,17 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.penalties--
 		if m.penalties < 1 {
 			m.currentPenalty = 0
+		}
+	case TickMsg:
+		if !m.endlessMode {
+			m.time = max(0, m.time-1)
+			if m.time < 1 {
+				m.isGameOver = true
+			} else {
+				cmds = append(cmds, tea.Tick(1*time.Second, func(t time.Time) tea.Msg {
+					return TickMsg{}
+				}))
+			}
 		}
 	}
 
@@ -176,11 +196,16 @@ func (m model) missPenalty() (model, tea.Cmd) {
 }
 
 func (m model) skipPenalty() (model, tea.Cmd) {
-	m.time -= 5
+	m.time = max(m.time-5, 0)
 	m.penalties++
+	m.currentPenalty = 5
 	return m, tea.Tick(800*time.Millisecond, func(t time.Time) tea.Msg {
 		return PenaltyExpiredMsg{}
 	})
+}
+
+func (m model) scoreStr() string {
+	return strconv.Itoa(151 - len(m.pokes))
 }
 
 func (m model) View() tea.View {
@@ -212,7 +237,21 @@ func (m model) View() tea.View {
 			"",
 			"",
 			"",
-			m.footerView(),
+			m.footerView(true),
+		)
+
+		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
+		v.AltScreen = true
+
+		return v
+	} else if m.isGameOver {
+		all := lipgloss.JoinVertical(
+			lipgloss.Center,
+			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+			m.gameOverView(),
+			"",
+			"",
+			m.footerView(false),
 		)
 
 		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
@@ -223,14 +262,14 @@ func (m model) View() tea.View {
 		all := lipgloss.JoinVertical(
 			lipgloss.Center,
 			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
-			m.endlessHeaderView(),
+			m.timedHeaderView(),
 			m.descriptionView(),
 			"",
 			m.inputView(),
 			"",
 			"",
 			"",
-			m.footerView(),
+			m.footerView(true),
 		)
 
 		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
@@ -253,7 +292,7 @@ func (m model) modeSelectorView() string {
 }
 
 func (m model) endlessHeaderView() string {
-	score := "score: " + strconv.Itoa(151-len(m.pokes))
+	score := "score: " + m.scoreStr()
 	skips := "skips: " + strconv.Itoa(m.skips)
 	misses := "misses: " + strconv.Itoa(m.misses)
 	flashSkips := m.flashingFields["skips"] > 0
@@ -287,8 +326,38 @@ func (m model) endlessHeaderView() string {
 }
 
 func (m model) timedHeaderView() string {
-	score := "score: " + strconv.Itoa(151-len(m.pokes))
-	timer := "time: " + strconv.Itoa(m.time)
+	score := "score: " + m.scoreStr()
+	var scoreStyle lipgloss.Style
+	flashScore := m.flashingFields["score"] > 0
+	flashMisses := m.flashingFields["misses"] > 0
+
+	if flashScore {
+		scoreStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#33cc66"))
+	} else if flashMisses {
+		scoreStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#ff0000"))
+	} else {
+		scoreStyle = lipgloss.NewStyle().Faint(true)
+	}
+
+	timer := lipgloss.NewStyle().Faint(true).Render("time: " + strconv.Itoa(m.time))
+
+	if m.currentPenalty > 0 {
+		timer += " -" + lipgloss.NewStyle().Foreground(lipgloss.Color("#ff0000")).Render(strconv.Itoa(m.currentPenalty))
+	}
+
+	return scoreStyle.Render(score) + " | " + timer
+}
+
+func (m model) gameOverView() string {
+	return lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		PaddingLeft(4).
+		PaddingRight(4).
+		PaddingTop(1).
+		PaddingBottom(1).
+		Width(min(m.width, 80)).
+		Align(lipgloss.Center).
+		Render("game over!\n\nfinal score: " + m.scoreStr() + "\nmisses: " + strconv.Itoa(m.misses) + "\nskips: " + strconv.Itoa(m.skips))
 }
 
 func (m model) descriptionView() string {
@@ -299,8 +368,14 @@ func (m model) inputView() string {
 	return lipgloss.NewStyle().Width(len(m.textInput.Value()) + 2).Render(m.textInput.View())
 }
 
-func (m model) footerView() string {
+func (m model) footerView(showTabSkip bool) string {
 	style := lipgloss.NewStyle().Faint(true)
 	keyStyle := lipgloss.NewStyle().Bold(true).Underline(true).Faint(true)
-	return keyStyle.Render("tab") + style.Render(" to skip | ") + keyStyle.Render("esc") + style.Render(" to quit")
+	footer := keyStyle.Render("esc") + style.Render(" to quit")
+
+	if showTabSkip {
+		footer = keyStyle.Render("tab") + style.Render(" to skip | ") + footer
+	}
+
+	return footer
 }
