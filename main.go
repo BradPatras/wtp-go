@@ -23,6 +23,14 @@ type UnFlashFieldMsg string
 type PenaltyExpiredMsg struct{}
 type TickMsg struct{}
 
+const SCREEN_MENU = 0
+const SCREEN_ENDLESS = 1
+const SCREEN_TIMED = 2
+const SCREEN_GAME_OVER = 3
+
+const GAMETYPE_ENDLESS = 0
+const GAMETYPE_TIMED = 1
+
 type Pokemon struct {
 	Id          int      `json:"id"`
 	Name        string   `json:"name"`
@@ -58,21 +66,20 @@ func createModel() model {
 }
 
 type model struct {
-	isStarted      bool
-	isGameOver     bool
-	currentPoke    int
-	currentDesc    int
-	pokes          []Pokemon
-	textInput      textinput.Model
-	width          int
-	height         int
-	skips          int
-	misses         int
-	time           int
-	flashingFields map[string]int
-	endlessMode    bool
-	penalties      int
-	currentPenalty int
+	currentPoke      int
+	currentDesc      int
+	pokes            []Pokemon
+	textInput        textinput.Model
+	width            int
+	height           int
+	skips            int
+	misses           int
+	time             int
+	flashingFields   map[string]int
+	penalties        int
+	currentPenalty   int
+	gameTypeSelector int
+	screen           int
 }
 
 func (m model) Init() tea.Cmd {
@@ -88,52 +95,16 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "ctrl+c":
 			return m, tea.Quit
 		case "esc":
-			if m.isStarted {
-				m.isStarted = false
-				m.isGameOver = false
-			} else {
+			switch m.screen {
+			case SCREEN_MENU:
 				return m, tea.Quit
+			default:
+				m.screen = SCREEN_MENU
 			}
 		case "enter":
-			if !m.isStarted {
-				m.isStarted = true
-				m.pokes = fetchPokes()
-				m.misses = 0
-				m.skips = 0
-				m = m.selectRandomPoke()
-				m.textInput.Reset()
-				if !m.endlessMode {
-					m.time = 60
-					cmds = append(cmds, func() tea.Msg { return TickMsg{} })
-				}
-			} else if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
-				cmds = append(cmds, m.flashField("score"))
-				m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
-				m = m.selectRandomPoke()
-				m.textInput.Reset()
-			} else {
-				cmds = append(cmds, m.flashField("misses"))
-				m.misses++
-			}
+			m, cmds = m.handleEnterKey()
 		case "tab":
-			if m.isStarted && !m.isGameOver {
-				m.textInput.Reset()
-				cmds = append(cmds, m.flashField("skips"))
-				m.currentPoke = rand.Intn(len(m.pokes))
-				m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
-
-				if m.endlessMode {
-					m.skips++
-				} else {
-					newM, cmd := m.skipPenalty()
-					m = newM
-					cmds = append(cmds, cmd)
-				}
-			} else if m.isGameOver {
-				// no-op
-			} else {
-				m.endlessMode = !m.endlessMode
-			}
+			m, cmds = m.handleTabKey()
 		}
 	case tea.WindowSizeMsg:
 		m.width = msg.Width
@@ -147,10 +118,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.currentPenalty = 0
 		}
 	case TickMsg:
-		if !m.endlessMode {
+		if m.screen == SCREEN_TIMED {
 			m.time = max(0, m.time-1)
 			if m.time < 1 {
-				m.isGameOver = true
+				m.screen = SCREEN_GAME_OVER
 			} else {
 				cmds = append(cmds, tea.Tick(1*time.Second, func(t time.Time) tea.Msg {
 					return TickMsg{}
@@ -164,6 +135,66 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	cmds = append(cmds, tcmd)
 
 	return m, tea.Batch(cmds...)
+}
+
+func (m model) handleEnterKey() (model, []tea.Cmd) {
+	var cmds []tea.Cmd
+	switch m.screen {
+	case SCREEN_MENU:
+		m.pokes = fetchPokes()
+		m.misses = 0
+		m.skips = 0
+		m = m.selectRandomPoke()
+		m.textInput.Reset()
+		if m.gameTypeSelector == GAMETYPE_TIMED {
+			m.time = 60
+			cmds = append(cmds, func() tea.Msg { return TickMsg{} })
+			m.screen = SCREEN_TIMED
+		} else {
+			m.screen = SCREEN_ENDLESS
+		}
+	case SCREEN_ENDLESS, SCREEN_TIMED:
+		if strings.EqualFold(m.pokes[m.currentPoke].Name, m.textInput.Value()) {
+			cmds = append(cmds, m.flashField("score"))
+			m.pokes = append(m.pokes[:m.currentPoke], m.pokes[m.currentPoke+1:]...)
+			m = m.selectRandomPoke()
+			m.textInput.Reset()
+		} else {
+			cmds = append(cmds, m.flashField("misses"))
+			m.misses++
+		}
+	default:
+		// no-op
+	}
+
+	return m, cmds
+}
+
+func (m model) handleTabKey() (model, []tea.Cmd) {
+	var cmds []tea.Cmd
+	switch m.screen {
+	case SCREEN_ENDLESS, SCREEN_TIMED:
+		m.textInput.Reset()
+		cmds = append(cmds, m.flashField("skips"))
+		m.currentPoke = rand.Intn(len(m.pokes))
+		m.currentDesc = rand.Intn(len(m.pokes[m.currentPoke].Description))
+		m.skips++
+		if m.screen == SCREEN_TIMED {
+			newM, cmd := m.skipPenalty()
+			m = newM
+			cmds = append(cmds, cmd)
+		}
+	case SCREEN_MENU:
+		if m.gameTypeSelector == GAMETYPE_ENDLESS {
+			m.gameTypeSelector = GAMETYPE_TIMED
+		} else {
+			m.gameTypeSelector = GAMETYPE_ENDLESS
+		}
+	default:
+		// no-op
+	}
+
+	return m, cmds
 }
 
 func (m model) selectRandomPoke() model {
@@ -187,14 +218,6 @@ func (m model) flashField(fieldKey string) tea.Cmd {
 	})
 }
 
-func (m model) missPenalty() (model, tea.Cmd) {
-	m.time -= 2
-	m.penalties++
-	return m, tea.Tick(800*time.Millisecond, func(t time.Time) tea.Msg {
-		return PenaltyExpiredMsg{}
-	})
-}
-
 func (m model) skipPenalty() (model, tea.Cmd) {
 	m.time = max(m.time-5, 0)
 	m.penalties++
@@ -213,74 +236,95 @@ func (m model) View() tea.View {
 		return tea.NewView("Loading...")
 	}
 
-	if !m.isStarted {
-		splashView := lipgloss.JoinVertical(
-			lipgloss.Center,
-			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
-			m.modeSelectorView(),
-			"",
-			lipgloss.NewStyle().Faint(true).Underline(true).Render("enter")+lipgloss.NewStyle().Faint(true).Render(" to begin, ")+
-				lipgloss.NewStyle().Faint(true).Underline(true).Render("tab")+lipgloss.NewStyle().Faint(true).Render(" to switch mode"),
-		)
-		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, splashView))
-
-		v.AltScreen = true
-		return v
-	} else if m.endlessMode {
-		all := lipgloss.JoinVertical(
-			lipgloss.Center,
-			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
-			m.endlessHeaderView(),
-			m.descriptionView(),
-			"",
-			m.inputView(),
-			"",
-			"",
-			"",
-			m.footerView(true),
-		)
-
-		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
-		v.AltScreen = true
-
-		return v
-	} else if m.isGameOver {
-		all := lipgloss.JoinVertical(
-			lipgloss.Center,
-			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
-			m.gameOverView(),
-			"",
-			"",
-			m.footerView(false),
-		)
-
-		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
-		v.AltScreen = true
-
-		return v
-	} else {
-		all := lipgloss.JoinVertical(
-			lipgloss.Center,
-			lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
-			m.timedHeaderView(),
-			m.descriptionView(),
-			"",
-			m.inputView(),
-			"",
-			"",
-			"",
-			m.footerView(true),
-		)
-
-		v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
-		v.AltScreen = true
-
-		return v
+	switch m.screen {
+	case SCREEN_MENU:
+		return m.menuView()
+	case SCREEN_ENDLESS:
+		return m.endlessModeView()
+	case SCREEN_GAME_OVER:
+		return m.gameOverView()
+	case SCREEN_TIMED:
+		return m.timedModeView()
 	}
+
+	return tea.NewView("Hmmm... are you lost? Try pressing escape")
 }
 
-func (m model) modeSelectorView() string {
-	if m.endlessMode {
+func (m model) gameOverView() tea.View {
+	all := lipgloss.JoinVertical(
+		lipgloss.Center,
+		lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+		m.gameOverDescription(),
+		"",
+		"",
+		m.footerView(false),
+	)
+
+	v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
+	v.AltScreen = true
+
+	return v
+}
+
+func (m model) endlessModeView() tea.View {
+	all := lipgloss.JoinVertical(
+		lipgloss.Center,
+		lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+		m.endlessHeaderView(),
+		m.descriptionView(),
+		"",
+		m.inputView(),
+		"",
+		"",
+		"",
+		m.footerView(true),
+	)
+
+	v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
+	v.AltScreen = true
+
+	return v
+}
+
+func (m model) timedModeView() tea.View {
+	all := lipgloss.JoinVertical(
+		lipgloss.Center,
+		lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+		m.timedHeaderView(),
+		m.descriptionView(),
+		"",
+		m.inputView(),
+		"",
+		"",
+		"",
+		m.footerView(true),
+	)
+
+	v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, all))
+	v.AltScreen = true
+
+	return v
+}
+
+func (m model) menuView() tea.View {
+	splashView := lipgloss.JoinVertical(
+		lipgloss.Center,
+		lipgloss.NewStyle().Foreground(lipgloss.Blue).Render(splash),
+		m.gametypeSelectorView(),
+		"",
+		lipgloss.NewStyle().Faint(true).Underline(true).Render("enter")+
+			lipgloss.NewStyle().Faint(true).Render(" to begin, ")+
+			lipgloss.NewStyle().Faint(true).Underline(true).Render("tab")+
+			lipgloss.NewStyle().Faint(true).Render(" to switch mode"),
+	)
+	v := tea.NewView(lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, splashView))
+
+	v.AltScreen = true
+	return v
+}
+
+func (m model) gametypeSelectorView() string {
+	if m.gameTypeSelector == GAMETYPE_ENDLESS {
 		return lipgloss.NewStyle().Foreground(lipgloss.Color("#008800")).Render("[endless]") +
 			" | " +
 			lipgloss.NewStyle().Faint(true).Render(" time attack ")
@@ -348,7 +392,7 @@ func (m model) timedHeaderView() string {
 	return scoreStyle.Render(score) + " | " + timer
 }
 
-func (m model) gameOverView() string {
+func (m model) gameOverDescription() string {
 	return lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
 		PaddingLeft(4).
