@@ -1,4 +1,4 @@
-# Who's that pokemon?!
+# Who's that Pokemon?!
 
 A TUI game made to explore golang, bubbletea and lipgloss.
 
